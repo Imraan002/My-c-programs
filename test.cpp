@@ -1,49 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
-struct node{
-    int x;
-    int y;
-};
-vector<pair<int,int>> points;
-vector<vector<int>> mtrx;
-node parent[500][500];
-int Size[500][500];
-void make(int x,int y)
-{
-    parent[x][y].x=x;
-    parent[x][y].y=y;
-    Size[x][y]=1;
-}
-node find(int x,int y)
-{
-    node temp;
-    if(parent[x][y].x==x && parent[x][y].y==y)
-        {
-            temp.x=x;
-            temp.y=y;
-            return temp;
-        }
-    temp=find(parent[x][y].x,parent[x][y].y);
-    parent[x][y].x=temp.x;
-    parent[x][y].y=temp.y;
-    return temp;
- }
-void Union(int x1,int y1,int x2,int y2)
-{
-    auto a=find(x1,y1);
-    auto b=find(x2,y2);
-    if(a.x!=b.x || a.y!=b.y)
-    {
-        if(Size[a.x][a.y]<Size[b.x][b.y])
-            {
-                swap(a,b);
-            }
-        parent[b.x][b.y].x=a.x;
-        parent[b.x][b.y].y=a.y;
-        Size[a.x][a.y]+=Size[b.x][b.y];
-    }
-}
 int main()
 {
     #ifndef ONLINE_JUDGE
@@ -51,55 +8,40 @@ int main()
         freopen("output.txt","w",stdout);
     #endif
     ios_base::sync_with_stdio(false);cin.tie(NULL);
-    int n;
-    cin>>n;
-    for(int i=0;i<n;i++)
+    
+    ll int a,b,c;
+    cin>>a>>b>>c;
+    string ans="";
+    bool flg=true;
+    if(a%b==0)
     {
-        int x,y;
-        cin>>x>>y;
-        points.push_back({x,y});
+    	ans+=to_string(a);
+    	for(int i=0;i<c;i++)
+    	{
+    		ans+='0';
+    	}
     }
-    for(auto k:points)
-    {
-        cout<<k.first<<k.second<<"\n";
-    }
-    for(int i=0;i<n;i++)
-    {
-        for(int j=i+1;j<n;j++)
-        {
-            int cost=abs(abs(points[i].first)-abs(points[j].first))+abs(abs(points[i].second)-abs(points[j].second));
-            vector<int> temp;
-            temp.push_back(cost);
-            temp.push_back(points[i].first);
-            temp.push_back(points[i].second);
-            temp.push_back(points[j].first);
-            temp.push_back(points[j].second);
-            mtrx.push_back(temp);
+    else{
+    	ans+=to_string(a);
+    	int i=0;
+    	for( i=0;i<=9;i++)
+    	{
+    		if((a*10+i)%b==0)
+    		{
+    			ans+=to_string(i);
+    			flg=false;
+    			break;
+    		}
+    	}
+    	for(i;i<c;i++)
+    	{
+    		ans+='0';
+    	}
 
-        }
     }
-   // sort(mtrx.begin(),mtrx.end());
-    for(int i=0;i<n;i++)
-    {
-        make(points[i].first,points[i].second);
-    } 
-    for(auto k:mtrx)
-    {
-        cout<<k[0]<<"-->"<<k[1]<<" "<<k[2]<<"-->"<<k[3]<<" "<<k[4]<<"\n";
-    }
-    int total_cost=0;
-    // for(auto k:mtrx)
-    // {
-    //     int wt=k[0];
-    //     int x1=k[1];
-    //     int y1=k[2];
-    //     int x2=k[3];
-    //     int y2=k[4];
-    //     if(parent[x1][y1].x==parent[x2][y2].x && parent[x1][y1].y==parent[x2][y2].y)continue;
-    //     cout<<x1<<" "<<y1<<" "<<x2<<" "<<y2<<"-->"<<wt<<"\n";
-    //     Union(x1,y1,x2,y2);
-    //     total_cost+=wt;
-    // }
-     cout<<total_cost<<"\n";
+    if(flg==true)
+    	cout<<-1<<"\n";
+    else
+    	cout<<ans<<"\n";
     return 0;
 }
