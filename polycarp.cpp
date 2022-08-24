@@ -8,19 +8,17 @@ int main()
         freopen("output.txt","w",stdout);
     #endif
     ios_base::sync_with_stdio(false);cin.tie(NULL);
-    ll int t;
+    
+    int t;
     cin>>t;
     while(t--)
     {
-        ll int arr[7];
-        for(ll int i=0;i<7;i++)
+        int b[7];
+        for(int i=0;i<7;i++)
         {
-            cin>>arr[i];
+            cin>>b[i];
         }
-        cout<<arr[0]<<" ";
-        cout<<arr[1]<<" ";
-        cout<<arr[6]-(arr[0]+arr[1])<<"\n";
-
+         cout << b[0] << ' ' << b[1] << ' ' << b[6] - b[0] - b[1] << endl;
     }
     return 0;
 }

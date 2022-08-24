@@ -16,7 +16,7 @@ int main()
  	int n,m;
  	cin>>n>>m;
  	int ans=0;
- 	if((n==1 && m>2) || (n==1 && m>2))
+ 	if((n==1 && m>2) || (m==1 && n>2))
  	{
  		cout<<-1<<"\n";
  		continue;
