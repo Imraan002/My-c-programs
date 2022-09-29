@@ -1,19 +1,25 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long
-int main()
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define sp(x) fixed<<setprecision(x)
+#define ull unsigned long long
+#define int long long
+
+
+
+
+signed main()
 {
     #ifndef ONLINE_JUDGE
         freopen("input.txt","r",stdin);
-        freopen("output.txt","w",stdout);
+        freopen("output.txt","w",stdout);              //Imraan
     #endif
-    ios_base::sync_with_stdio(false);cin.tie(NULL);
+    fast_io;
     
-    string str;
+     vector<int> arr={1,2,3};
 
-   
-    str.push_back('h');
-    str.insert(0,"i");
-    cout<<str;
+    cout<<arr.back();
+
+     
     return 0;
 }
